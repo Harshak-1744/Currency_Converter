@@ -2,54 +2,55 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Currency_Converter
-{
-    public static void main(String[] args) 
-    {
-        System.out.println("Hello! Welcome to Currency_converter..");
+public class CurrencyConverter {
+    public static void main(String[] args) {
+        System.out.println("Hello! Welcome to Currency Converter..");
         Scanner scanner = new Scanner(System.in);
 
-        int number = scanner.nextInt();
-        
-        switch(number)
-        {
-            case 1:
-                System.out.println("1$ = 81.99 INR");
-                double conversionRate = 81.99;
+        try {
+            System.out.println("Choose an option:");
+            System.out.println("1. USD to INR");
+            System.out.println("2. EUR to INR");
+            int number = scanner.nextInt();
 
-                System.out.print("Enter amount in Dollars: ");
-                double indianRupees = scanner.nextDouble();
+            switch (number) {
+                case 1:
+                    System.out.println("1$ = 81.99 INR");
+                    double conversionRateUSD = 81.99;
 
-        
-                double dollars = indianRupees * conversionRate; 
+                    System.out.print("Enter amount in Dollars: ");
+                    double dollars = scanner.nextDouble();
 
-        
-                NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+                    double indianRupeesUSD = dollars * conversionRateUSD;
 
-        
-                String formattedDollars = currencyFormatter.format(dollars);
+                    NumberFormat currencyFormatterUSD = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+                    String formattedIndianRupeesUSD = currencyFormatterUSD.format(indianRupeesUSD);
 
-                System.out.println("Equivalent amount in IndianRupees: " + formattedDollars);
-            
-            break;
-            
-            case 2:
-                System.out.println("1€ = 91.24 INR");
-                double C_Rate = 91.24;
-                
-                System.out.print("Enter amount in Euros: " );
-                double I_R = scanner.nextDouble();
-                
-                double euros = I_R * C_Rate;
-                NumberFormat c_Formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-                String formattedEuros = c_Formatter.format(euros);
-            
-                System.out.println("Equivalent amount in IndianRupees: " + formattedEuros);
-                
-            break;
+                    System.out.println("Equivalent amount in Indian Rupees: " + formattedIndianRupeesUSD);
+                    break;
+
+                case 2:
+                    System.out.println("1€ = 91.24 INR");
+                    double conversionRateEUR = 91.24;
+
+                    System.out.print("Enter amount in Euros: ");
+                    double euros = scanner.nextDouble();
+
+                    double indianRupeesEUR = euros * conversionRateEUR;
+
+                    NumberFormat currencyFormatterEUR = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+                    String formattedIndianRupeesEUR = currencyFormatterEUR.format(indianRupeesEUR);
+
+                    System.out.println("Equivalent amount in Indian Rupees: " + formattedIndianRupeesEUR);
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please select either 1 or 2.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error: Invalid input. Please enter a valid number.");
+        } finally {
+            scanner.close();
         }
-                    
-
-    scanner.close();
     }
 }
